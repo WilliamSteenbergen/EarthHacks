@@ -11,7 +11,8 @@
   </head>
   <body>
     <h3>The location</h3>
-    <p> The expected area that will burn if a fire hits is 87%</p>
+    <p> The predicted area that will burn if a fire hits is {{ post.prediction }}%</p>
+
 
     <!--The div element for the map -->
     <div id="map"></div>
@@ -22,7 +23,7 @@ function initMap() {
   var location = {lat: {{ post.latitude }}, lng: {{ post.longitude }}};
   // The map, centered at Location
   var map = new google.maps.Map(
-      document.getElementById('map'), {zoom: 7, center: location, mapTypeId: 'satellite'});
+      document.getElementById('map'), {zoom: 15, center: location, mapTypeId: 'satellite'});
   // The marker, positioned at Location
   var marker = new google.maps.Marker({position: location, map: map});
 }
