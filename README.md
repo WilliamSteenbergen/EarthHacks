@@ -1,4 +1,4 @@
-###Inspiration
+#Inspiration
 
 Living in California, our team was keenly aware of how the past few years of wildfires have affected our lives: increasing air pollution, participating in planned public safety power shut-offs, and supporting friends through tragic losses. As we dove into our research, it became clear that the community-level devastation affected communities of all sizes, with an outsized impact on those who are most vulnerable due to their age, education, language ability, mobility, and socio-economic status. As we thought about where we could add value, we wanted to ensure we were prioritizing those who needed the most help. 
 
