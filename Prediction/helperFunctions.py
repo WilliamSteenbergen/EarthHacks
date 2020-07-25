@@ -39,11 +39,14 @@ def boundingBox(longitudeInDegrees, latitudeInDegrees, halfSideInKm):
     # Radius of the parallel at given latitude
     pradius = radius*math.cos(lat)
 
-    min_lat = lat - halfSide/radius
-    max_lat = lat + halfSide/radius
-    min_lon = lon - halfSide/pradius
-    max_lon = lon + halfSide/pradius
-    Bbox = (rad2deg(min_lon), rad2deg(min_lat), rad2deg(max_lon), rad2deg(max_lat))
+    min_lat = rad2deg(lat - halfSide/radius)
+    max_lat = rad2deg(lat + halfSide/radius)
+    min_lon = rad2deg(lon - halfSide/pradius)
+    max_lon = rad2deg(lon + halfSide/pradius)
+
+
+    # Bbox = (rad2deg(min_lon), rad2deg(min_lat), rad2deg(max_lon), rad2deg(max_lat))
+    Bbox = [[min_lon, min_lat], [max_lon, min_lat], [max_lon, max_lat], [min_lon, max_lat]]
     return Bbox
 
 def save(name, imageFile, scale, region, i):
@@ -97,7 +100,7 @@ def getDatePost(fire_perims, i):
     date = fire_perims['perimeterd'].iloc[i]
     firedate = dt.datetime.strptime(date, '%Y-%m-%d')
     firedate_str = firedate.strftime("%Y-%m-%d")
-    interval_enddate = firedate + dt.timedelta(days = 20)
+    interval_enddate = firedate + dt.timedelta(days = 3)
     interval_enddate_str = interval_enddate.strftime("%Y-%m-%d")
     return (firedate_str,interval_enddate_str)
 
@@ -106,9 +109,9 @@ def getDatePre(fire_perims, i):
     #get date and turn it into date time...
     date = fire_perims['perimeterd'].iloc[i]
     firedate = dt.datetime.strptime(date, '%Y-%m-%d')
-    interval_startdate = firedate - dt.timedelta(days = 100)
+    interval_startdate = firedate - dt.timedelta(days = 30)
     firedate_str=interval_startdate.strftime("%Y-%m-%d")
-    interval_enddate= firedate - dt.timedelta(days = 20)
+    interval_enddate= firedate - dt.timedelta(days = 25)
     interval_enddate_str=interval_enddate.strftime("%Y-%m-%d")
     return (firedate_str,interval_enddate_str)
 
