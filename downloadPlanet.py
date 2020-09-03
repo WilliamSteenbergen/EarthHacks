@@ -20,15 +20,18 @@ def download_results(results, overwrite=False):
 	print('{} items to download'.format(len(results_urls)))
 
 	for url, name in zip(results_urls, results_names):
-		path = pathlib.Path(os.path.join('data', name))
+		path = '/datadrive'
+		path = path + name
+		r = requests.get(url, allow_redirects=True)
+		open(path, 'wb').write(r.content)
 
-		if overwrite or not path.exists():
-			print('downloading {} to {}'.format(name, path))
-			r = requests.get(url, allow_redirects=True)
-			path.parent.mkdir(parents=True, exist_ok=True)
-			open(path, 'wb').write(r.content)
-		else:
-			print('{} already exists, skipping {}'.format(path, name))
+		# if overwrite or not path.exists():
+		# 	print('downloading {} to {}'.format(name, path))
+		#
+		# 	path.parent.mkdir(parents=True, exist_ok=True)
+		#
+		# else:
+		# 	print('{} already exists, skipping {}'.format(path, name))
 
 
 if __name__ == '__main__':
