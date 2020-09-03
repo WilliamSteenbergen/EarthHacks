@@ -32,20 +32,18 @@ def download_results(results, overwrite=False):
 
 
 if __name__ == '__main__':
-	ordersUrl = 'https://api.planet.com/compute/ops/orders/v2/3baa3345-c124-413b-a6f9-1d5053751da4'
-	auth = HTTPBasicAuth("e262ca6835e64fa7b6975c558237e509", '')
+	urls = ['https://api.planet.com/compute/ops/orders/v2/2b5eb334-f456-410f-963b-190790e324df',
+	        'https://api.planet.com/compute/ops/orders/v2/02b605e7-7715-4d38-8a68-9ac9b514c379',
+	        'https://api.planet.com/compute/ops/orders/v2/ceedd5d0-cd28-4e02-a8b3-a8a34f77c8f0',
+	        'https://api.planet.com/compute/ops/orders/v2/999dd5b1-9193-4401-a4ed-26c97a63b596',
+	        'https://api.planet.com/compute/ops/orders/v2/2e0bf1fb-ba6f-436e-b468-259fb9f16b4c'
+	]
+	for ordersUrl in urls:
+		auth = HTTPBasicAuth("e262ca6835e64fa7b6975c558237e509", '')
 
-	r = requests.get(ordersUrl, auth=auth)
-	response = r.json()
-	results = response['_links']['results']
+		r = requests.get(ordersUrl, auth=auth)
+		response = r.json()
+		results = response['_links']['results']
 
-	download_results(results)
+		download_results(results)
 
-	ordersUrl = 'https://api.planet.com/compute/ops/orders/v2/84cb4b0c-25f2-4fa8-b3c6-c92d4bce897a'
-	auth = HTTPBasicAuth("e262ca6835e64fa7b6975c558237e509", '')
-
-	r = requests.get(ordersUrl, auth=auth)
-	response = r.json()
-	results = response['_links']['results']
-
-	download_results(results)
